@@ -1,4 +1,6 @@
 using api.Data;
+using api.Repository.Interfaces;
+using api.Repository.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>();
+builder.Services.AddTransient<IUsuario, UsuarioService>();
 
 var app = builder.Build();
 
