@@ -27,4 +27,17 @@ public class UsuarioController : ControllerBase
         }
         return Ok(response);
     }
+
+    [HttpPut]
+    [Route("/editar/usuario")]
+    public async Task<IActionResult> EditarUsuario([FromBody] UsuarioModel usuario)
+    {
+        var response = await this.usuario.EditarUsuario(usuario);
+        if (response is not null)
+        if (response.Mensagem.Contains("Erro"))
+        {
+            BadRequest(response);
+        }
+        return Ok(response);
+    }
 }
